@@ -1,6 +1,6 @@
 <div align="center">
   
-# Airbnb Analysis within New York's Housing Market 🏛️
+# Airbnb's Impact on New York's Housing Market 🏛️
 
 </div>
 
