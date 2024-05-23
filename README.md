@@ -4,7 +4,7 @@
   <img src='https://static.anuevayork.com/wp-content/uploads/2020/06/16084125/Guia-de-Nueva-York-en-espanol-Empire-State-Building-scaled.jpg' width="1000" height="600" />
 </p>
 
-This project will explore a dataset of housing advertised on the Airbnb platform in the city of New York, the city that never sleeps (never said better jeje). In this way, it will analyse the impact of Airbnb on the housing market in this very touristic city, rental patterns, prices and tourist flows in the city.
+This project will explore a dataset of housing advertised on the Airbnb platform in the city of New York, the city that never sleeps (never said better jeje). In this way, it will analyse the impact of Airbnb on the housing market in this very touristic city, rental patterns, prices, tourist flows and safety in the city.
 
 This analysis will allow us to understand the impact of this platform and to formulate possible regulations to address the associated problems.
 
