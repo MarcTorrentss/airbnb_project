@@ -1,5 +1,7 @@
 <div align="center">
+  
 # Airbnb Analysis within New York's Housing Market 🏛️
+
 </div>
 
 <p align="center">
