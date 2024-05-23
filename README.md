@@ -1,4 +1,6 @@
+<div align="center">
 # Airbnb Analysis within New York's Housing Market 🏛️
+</div>
 
 <p align="center">
   <img src='https://static.anuevayork.com/wp-content/uploads/2020/06/16084125/Guia-de-Nueva-York-en-espanol-Empire-State-Building-scaled.jpg' width="1000" height="600" />
