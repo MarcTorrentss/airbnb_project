@@ -35,7 +35,7 @@ The data to be worked with corresponds to the register of Airbnb listings publis
         - Data normalisation using ``StandardScaler()``.
         - Training of different regression models.
 
-- **Streamlit application**: An interactive Streamlit application has been developed that allows exploration and visualisation of the analysed data. It is available at https://airbnb-rome.streamlit.app/
+- **Streamlit application**: An interactive Streamlit application has been developed that allows exploration and visualisation of the analysed data. It is available at https://airbnb-ny.streamlit.app/
 
 ### Running instructions 💻
 
