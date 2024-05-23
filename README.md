@@ -1,4 +1,4 @@
-# Analysis of the Impact of Airbnb on New York's Housing Market 🏛️
+# Airbnb Analysis within New York's Housing Market 🏛️
 
 <p align="center">
   <img src='https://static.anuevayork.com/wp-content/uploads/2020/06/16084125/Guia-de-Nueva-York-en-espanol-Empire-State-Building-scaled.jpg' width="1000" height="600" />
