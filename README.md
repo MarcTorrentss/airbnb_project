@@ -12,7 +12,7 @@ This project will explore a dataset of housing advertised on the Airbnb platform
 
 This analysis will allow us to understand the impact of this platform and to formulate possible regulations to address the associated problems.
 
-The data to be worked with corresponds to the register of Airbnb listings published in the city of Rome as of 7 September 2022.
+The data to be worked with corresponds to the register of Airbnb listings published in The Big Apple as of 7 September 2022.
 
 ### Project characteristics
 
