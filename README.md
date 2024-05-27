@@ -14,22 +14,19 @@ This analysis will allow us to understand the impact of this platform and to for
 
 The data to be worked with corresponds to the register of Airbnb listings published in The Big Apple as of 7 September 2022.
 
-### Project characteristics
+### Project Characteristics
 
-- **Data**: Data for this project was obtained from the website [Inside Airbnb](https://insideairbnb.com/get-the-data/).
+- **Data**: The Airbnb data for this project was obtained from the website [Inside Airbnb](https://insideairbnb.com/get-the-data/).
+            The Public safety dataset was obteiner from the website [NYC OpenData](https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Current-Year-To-Date-/5uac-w243/data)
 - **Code**: The code used is located in the folder ``notebooks``, and includes three jupyter notebooks with different sections:
   
-    1. ``1_Preprocessing_EDA.ipynb``:
+    1. ``Preprocessing_EDA.ipynb``:
         - Loading the libraries and reading the different datasets.
         - Datasets information.
         - Data pre-processing: null and outlier repair, fixing values, select valuable information...
         - Exploratory data analysis (EDA), including visualisation of interactive maps and other graphics.
-        
-    2. ``2_NLP.ipynb``. **Natural Language Processing**:
-         - Creation of a **word cloud** visualisation ilustrating the frequency and importance of words in the textual data, based on the list reviews.
-         - **Sentiment analysis** of reviews and distribution of sentiment between positive, negative or neutral. Visualization.
            
-    4. ``3_ML_pricepredictor.ipynb``. Implementation of **machine learning models** to predict accommodation prices (regression model):
+    2. ``ML_pricepredictor.ipynb``. Implementation of **machine learning models** to predict accommodation prices (regression model):
         - Preprocessing filtered dataframe used to train models.
         - Data splitting using train_test_split() from scikit-learn.
         - Data normalisation using ``StandardScaler()``.
