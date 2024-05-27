@@ -17,7 +17,7 @@ The data to be worked with corresponds to the register of Airbnb listings publis
 ### Project Characteristics
 
 - **Data**: The Airbnb data for this project was obtained from the website [Inside Airbnb](https://insideairbnb.com/get-the-data/).
-            The Public safety dataset was obteiner from the website [NYC OpenData](https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Current-Year-To-Date-/5uac-w243/data)
+            The Public safety dataset was obtained from the website [NYC OpenData](https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Current-Year-To-Date-/5uac-w243/data)
 - **Code**: The code used is located in the folder ``notebooks``, and includes three jupyter notebooks with different sections:
   
     1. ``Preprocessing_EDA.ipynb``:
