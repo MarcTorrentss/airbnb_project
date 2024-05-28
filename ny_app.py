@@ -24,7 +24,6 @@ import xgboost as xgb
 import json
 from joblib import load
 import joblib
-from lazypredict.Supervised import LazyRegressor
 
 warnings.simplefilter(action='ignore', category=(SettingWithCopyWarning))
 
