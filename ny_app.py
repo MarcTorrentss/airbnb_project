@@ -177,7 +177,7 @@ elif page == "Price predictor":
         beds = st.number_input('No. of beds:', value=1)
         accom = st.number_input('No. of travellers:', value=1)
         bath = st.number_input('No. of bathrooms:', value=1)
-        distrito = st.selectbox('Choose the district of New York you are interested in:', ['Choose...] + list(districts.keys())) # First selectbox (District)
+        distrito = st.selectbox('Choose the district of New York you are interested in:', ['Choose...'] + list(districts.keys())) # First selectbox (District)
         
         # Conditioning the activation of the second selectbox
         if distrito != 'Choose...':
