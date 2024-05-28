@@ -22,8 +22,7 @@ from streamlit_folium import folium_static
 # Prediction
 import xgboost as xgb
 import json
-from joblib import load
-import joblib
+from joblib import dump, load
 
 warnings.simplefilter(action='ignore', category=(SettingWithCopyWarning))
 
@@ -157,7 +156,7 @@ elif page == "Price predictor":
     
     # Files upload    
     scaler = load('files/scaler.pkl') # Load the scaler
-    model = load_model('models/price_ElasticNet') # Load the best model trained
+    model = joblib.load('models/price_ElasticNet') # Load the best model trained
     
     with open("files/mapeo.json", "r") as json_file:
         # Loads the content of the JSON file into a dictionary
