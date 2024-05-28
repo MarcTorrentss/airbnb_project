@@ -190,8 +190,6 @@ elif page == "Price predictor":
             if (distrito != 'Choose...' and submit_button):
                 input_data = pd.DataFrame([[beds, accom, bath, barrio]], columns=['beds', 'accommodates', 'bathrooms', 'neighbourhood_cleansed']) 
 
-                
-                '''
                 # 1 - Encode what the user types into numbers using the mapping json.
                 input_data['neighbourhood_cleansed'] = input_data['neighbourhood_cleansed'].replace(encoder)
         
@@ -202,4 +200,4 @@ elif page == "Price predictor":
                 prediction = model.predict(dtest)
         
                 predicted_price = prediction[-1]  # Generally, the prediction is in the last column.
-                st.write(f"### The predicted price of the accommodation is {predicted_price:.2f} €")'''
+                st.write(f"### The predicted price of the accommodation is {predicted_price:.2f} €")
