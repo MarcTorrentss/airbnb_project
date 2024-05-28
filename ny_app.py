@@ -188,8 +188,7 @@ elif page == "Price predictor":
             submit_button = st.form_submit_button(label='Predict the price')
 
             if submit_button:
-                input_data = pd.DataFrame([[beds, accom, bath, barrio]],
-                                columns=['beds', 'accommodates', 'bathrooms', 'neighbourhood_cleansed']) 
+                input_data = pd.DataFrame([[beds, accom, bath, barrio]], columns=['beds', 'accommodates', 'bathrooms', 'neighbourhood_cleansed']) 
 
                 # 1 - Encode what the user types into numbers using the mapping json.
                 input_data['neighbourhood_cleansed'] = input_data['neighbourhood_cleansed'].replace(encoder)
