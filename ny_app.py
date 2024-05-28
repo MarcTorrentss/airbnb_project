@@ -173,12 +173,22 @@ elif page == "Price predictor":
 
     # --------------------------------------------------------------------------------------
 
+    # Initialize session state
+    if 'district_selected' not in st.session_state:
+        st.session_state.district_selected = False
+    
+    # First form, choose district
     with st.form("choose_district"):
         distrito = st.selectbox('Choose the district of New York you are interested in:', ['Choose...'] + list(districts.keys())) # First selectbox (District)
         district_button = st.form_submit_button(label='Choose district')
 
-    if (distrito != 'Choose...' and district_button):
-        
+        if (distrito != 'Choose...' and district_button):
+            st.session_state.district_selected = True
+
+
+    # Second form: Prediction Form (only shown if a district has been selected)
+    if st.session_state.district_selected:
+    
         with st.form("prediction_form"): 
             beds = st.number_input('No. of beds:', value=1)
             accom = st.number_input('No. of travellers:', value=1)
@@ -187,7 +197,7 @@ elif page == "Price predictor":
             
             submit_button = st.form_submit_button(label='Predict the price')
 
-            if (distrito != 'Choose...' and submit_button):
+            if submit_button:
                 input_data = pd.DataFrame([[beds, accom, bath, barrio]], columns=['beds', 'accommodates', 'bathrooms', 'neighbourhood_cleansed']) 
 
                 # 1 - Encode what the user types into numbers using the mapping json.
