@@ -183,7 +183,7 @@ elif page == "Price predictor":
         # Conditioning the activation of the second selectbox
         if distrito != 'Choose...':
             disabled_option2 = True
-            barrio = districts[distrito]
+            barrio = list(districts.values())
         else:
             disabled_option2 = False
             neighborhood = []
