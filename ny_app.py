@@ -159,7 +159,6 @@ elif page == "Price predictor":
     #model = load('models/model.pkl') # Load the best model trained
     model = load('models/price_xbg.pkl') # Load the best model trained
 
-    
     with open("files/mapeo.json", "r") as json_file:
         # Loads the content of the JSON file into a dictionary
         encoder = json.load(json_file)
@@ -207,6 +206,7 @@ elif page == "Price predictor":
         
                 # 2 - Normalise the input data
                 dtest = scaler.transform(input_data)
+                dtest = xgb.DMatrix(dtest) # convert the input data into a DMatrix object, the format used by XGBoost to make predictions.
 
                 # 3 - Make the prediction with the trained model
                 prediction = model.predict(dtest)
