@@ -126,7 +126,7 @@ if page == "Home":
                 """  )      
     st.write('------')                    
     st.markdown('### **Visualisation of the pre-processed dataframe:**')
-    st.dataframe(df.head())
+    st.dataframe(df.head(10))
     st.write('Information about the code used can be found on my GitHub: https://github.com/MarcTorrentss/airbnb_project')
 
 
