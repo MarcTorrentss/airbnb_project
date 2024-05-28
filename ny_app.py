@@ -173,7 +173,42 @@ elif page == "Price predictor":
 
     # --------------------------------------------------------------------------------------
 
-    with st.form("prediction_form"): 
+    with st.form("choose_district"):
+        distrito = st.selectbox('Choose the district of New York you are interested in:', ['Choose...'] + list(districts.keys())) # First selectbox (District)
+        district_button = st.form_submit_button(label='Choose district')
+
+    if district_button:
+        
+        with st.form("prediction_form"): 
+            beds = st.number_input('No. of beds:', value=1)
+            accom = st.number_input('No. of travellers:', value=1)
+            bath = st.number_input('No. of bathrooms:', value=1)
+            barrio = st.selectbox('Select a neighborhood', districts[distrito])
+            
+            submit_button = st.form_submit_button(label='Predict the price')
+
+            if submit_button:
+                input_data = pd.DataFrame([[beds, accom, bath, barrio]],
+                                columns=['beds', 'accommodates', 'bathrooms', 'neighbourhood_cleansed']) 
+
+                # 1 - Encode what the user types into numbers using the mapping json.
+                input_data['neighbourhood_cleansed'] = input_data['neighbourhood_cleansed'].replace(encoder)
+        
+                # 2 - Normalise the input data
+                dtest = scaler.transform(input_data)
+
+                # 3 - Make the prediction with the trained model
+                prediction = model.predict(dtest)
+        
+                predicted_price = prediction[-1]  # Generally, the prediction is in the last column.
+                st.write(f"### The predicted price of the accommodation is {predicted_price:.2f} €")
+
+
+
+
+
+    
+    '''with st.form("prediction_form"): 
         beds = st.number_input('No. of beds:', value=1)
         accom = st.number_input('No. of travellers:', value=1)
         bath = st.number_input('No. of bathrooms:', value=1)
@@ -199,4 +234,4 @@ elif page == "Price predictor":
         prediction = model.predict(dtest)
         
         predicted_price = prediction[-1]  # Generally, the prediction is in the last column.
-        st.write(f"### The predicted price of the accommodation is {predicted_price:.2f} €")
+        st.write(f"### The predicted price of the accommodation is {predicted_price:.2f} €")'''
