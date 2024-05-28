@@ -177,7 +177,7 @@ elif page == "Price predictor":
         distrito = st.selectbox('Choose the district of New York you are interested in:', ['Choose...'] + list(districts.keys())) # First selectbox (District)
         district_button = st.form_submit_button(label='Choose district')
 
-    if district_button:
+    if district_button == True:
         
         with st.form("prediction_form"): 
             beds = st.number_input('No. of beds:', value=1)
