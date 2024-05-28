@@ -81,7 +81,7 @@ def add_bg_from_local(image_file):
     """,
     unsafe_allow_html=True
     )
-add_bg_from_local("images/ny_wallpaper.jpg")  
+add_bg_from_local("images/ny_wallpaper_white.jpg")  
 
 
 # ---------------------BODY---------------------- #
