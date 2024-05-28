@@ -58,7 +58,7 @@ page = option_menu(None, ["Home", "Airbnb info", "Reviews", "Price predictor"],
 # read data
 @st.cache_data()
 def load_data():
-    df = pd.read_csv("insideairbnb/df_short.csv")
+    df = pd.read_csv("datasets/df_short.csv")
     return df
 
 # load data
