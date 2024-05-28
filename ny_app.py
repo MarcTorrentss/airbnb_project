@@ -179,11 +179,11 @@ elif page == "Price predictor":
     room = ['Private room', 'Entire home/apt', 'Hotel room', 'Shared room']
 
     
-    with open("files/mapeo2.json", "r") as json_file:
+    with open("files/mapeo3.json", "r") as json_file:
         # Loads the content of the JSON file into a dictionary
-        encoder_room = json.load(json_file)
+        encoder_property = json.load(json_file)
 
-    room = ['Private room', 'Entire home/apt', 'Hotel room', 'Shared room']
+    property = ['Apartment', 'House', 'Condominium', 'Townhouse', 'Hotel', 'Loft', 'Guest suite']
 
     
     # --------------------------------------------------------------------------------------
@@ -205,7 +205,7 @@ elif page == "Price predictor":
     if st.session_state.district_selected:
     
         with st.form("prediction_form"): 
-            room_type = st.selectbox('tipo habitacion:', room)
+            room_type = st.selectbox('Tipo habitacion:', room)
             accom = st.number_input('No. of travellers:', value=1)
             property_type = st.selectbox('Tipo airbnb:', property)
             beds = st.number_input('No. of beds:', value=1)
@@ -218,9 +218,9 @@ elif page == "Price predictor":
                 input_data = pd.DataFrame([[room_type, accom, property_type, beds, barrio]], columns=['room_type', 'accommodates', 'property_type', 'beds', 'neighbourhood_cleansed']) 
                 
                 # 1 - Encode what the user types into numbers using the mapping json.
-                input_data['room_type'] = input_data['room_type'].replace(encoder3)
-                input_data['property_type'] = input_data['property_type'].replace(encoder2)
-                input_data['neighbourhood_cleansed'] = input_data['neighbourhood_cleansed'].replace(encoder)
+                input_data['room_type'] = input_data['room_type'].replace(encoder_room)
+                input_data['property_type'] = input_data['property_type'].replace(encoder_property)
+                input_data['neighbourhood_cleansed'] = input_data['neighbourhood_cleansed'].replace(encoder_neighbourhood)
         
                 # 2 - Normalise the input data
                 dtest = scaler.transform(input_data)
