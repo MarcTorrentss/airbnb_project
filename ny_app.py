@@ -182,23 +182,8 @@ elif page == "Price predictor":
         # Conditioning the activation of the second selectbox
         if distrito != 'Choose...':
             barrio = st.selectbox('Select a neighborhood', districts[distrito])
-
-
             
-            #disabled_option2 = True
-            #barrio = list(districts.values())
-        #else:
-            #disabled_option2 = False
-            #neighborhood = []
-
-        #barrio = st.selectbox('Select a neighborhood:', neighborhood, disabled=disabled_option2) # Create the second selectbox (Neighbourhood)
-
-        # Show the selected options
-        #st.write('Selected district:', distrito)
-        #st.write('Selected neighborhood:', barrio)
-
         submit_button = st.form_submit_button(label='Predict the price')
-
 
     if submit_button:
         input_data = pd.DataFrame([[beds, accom, bath, barrio]],
