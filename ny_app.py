@@ -40,7 +40,7 @@ st.set_page_config(
 # ---------------------MENU---------------------- #
 
 # Header image
-st.image("images/ny_airbnb.jpg")
+st.image("images/ny_airbnb.png")
 
 # Menu bar
 page = option_menu(None, ["Home", "Airbnb info", "Reviews", "Price predictor"], 
