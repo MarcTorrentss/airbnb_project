@@ -164,7 +164,6 @@ elif page == "Price predictor":
 
     # Create a dictionary of the neighbourhoods
     districts = {
-    'Choose...': [],
     'Brooklyn': df[df['neighbourhood_group_cleansed'] == 'Brooklyn']['neighbourhood_cleansed'].unique().tolist(),
     'Manhattan': df[df['neighbourhood_group_cleansed'] == 'Manhattan']['neighbourhood_cleansed'].unique().tolist(),
     'Queens': df[df['neighbourhood_group_cleansed'] == 'Queens']['neighbourhood_cleansed'].unique().tolist(),
@@ -178,7 +177,7 @@ elif page == "Price predictor":
         beds = st.number_input('No. of beds:', value=1)
         accom = st.number_input('No. of travellers:', value=1)
         bath = st.number_input('No. of bathrooms:', value=1)
-        distrito = st.selectbox('Choose the district of New York you are interested in:', list(districts.keys())) # First selectbox (District)
+        distrito = st.selectbox('Choose the district of New York you are interested in:', ['Choose...] + list(districts.keys())) # First selectbox (District)
         
         # Conditioning the activation of the second selectbox
         if distrito != 'Choose...':
