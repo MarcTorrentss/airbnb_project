@@ -156,7 +156,7 @@ elif page == "Price predictor":
     
     # Files upload    
     scaler = load('files/scaler.pkl') # Load the scaler
-    model = joblib.load('models/price_ElasticNet') # Load the best model trained
+    model = joblib.load('models/model.pkl') # Load the best model trained
     
     with open("files/mapeo.json", "r") as json_file:
         # Loads the content of the JSON file into a dictionary
