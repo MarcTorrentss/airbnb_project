@@ -183,11 +183,11 @@ elif page == "Price predictor":
             beds = st.number_input('No. of beds:', value=1)
             accom = st.number_input('No. of travellers:', value=1)
             bath = st.number_input('No. of bathrooms:', value=1)
-            barrio = st.selectbox('Select a neighborhood', districts[distrito])
+            barrio = st.selectbox('Select a neighborhood', ['Choose...'] + districts[distrito])
             
             submit_button = st.form_submit_button(label='Predict the price')
 
-            if submit_button:
+            if (distrito != 'Choose...' and submit_button):
                 input_data = pd.DataFrame([[beds, accom, bath, barrio]], columns=['beds', 'accommodates', 'bathrooms', 'neighbourhood_cleansed']) 
 
                 
