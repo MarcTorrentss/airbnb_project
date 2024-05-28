@@ -181,7 +181,7 @@ elif page == "Price predictor":
         
         # Conditioning the activation of the second selectbox
         if distrito != 'Choose...':
-            barrio = st.selectbox('Select a neighborhood', list(districts.values()))
+            barrio = st.selectbox('Select a neighborhood', list(districts[distrito])
 
 
             
