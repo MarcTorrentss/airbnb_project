@@ -156,7 +156,9 @@ elif page == "Price predictor":
     
     # Files upload    
     scaler = load('files/scaler.pkl') # Load the scaler
-    model = load('models/model.pkl') # Load the best model trained
+    #model = load('models/model.pkl') # Load the best model trained
+    model = load('models/price_xbg.pkl') # Load the best model trained
+
     
     with open("files/mapeo.json", "r") as json_file:
         # Loads the content of the JSON file into a dictionary
