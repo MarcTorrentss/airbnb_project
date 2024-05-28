@@ -177,7 +177,7 @@ elif page == "Price predictor":
         distrito = st.selectbox('Choose the district of New York you are interested in:', ['Choose...'] + list(districts.keys())) # First selectbox (District)
         district_button = st.form_submit_button(label='Choose district')
 
-    if district_button == True:
+    if (distrito != 'Choose...' and district_button):
         
         with st.form("prediction_form"): 
             beds = st.number_input('No. of beds:', value=1)
@@ -189,13 +189,7 @@ elif page == "Price predictor":
 
             if submit_button:
                 input_data = pd.DataFrame([[beds, accom, bath, barrio]], columns=['beds', 'accommodates', 'bathrooms', 'neighbourhood_cleansed']) 
-                # Mostrar los valores seleccionados por el usuario para verificar
-                st.write("Selected values:")
-                st.write("District:", distrito)
-                st.write("Neighborhood:", barrio)
-                st.write("Beds:", beds)
-                st.write("Accommodates:", accom)
-                st.write("Bathrooms:", bath)
+
                 
                 '''
                 # 1 - Encode what the user types into numbers using the mapping json.
@@ -211,13 +205,6 @@ elif page == "Price predictor":
                 st.write(f"### The predicted price of the accommodation is {predicted_price:.2f} €")'''
 
 
-            # Mostrar los valores seleccionados por el usuario para verificar
-            st.write("Selected values:")
-            st.write("District:", distrito)
-            st.write("Neighborhood:", barrio)
-            st.write("Beds:", beds)
-            st.write("Accommodates:", accom)
-            st.write("Bathrooms:", bath)
 
 
     
