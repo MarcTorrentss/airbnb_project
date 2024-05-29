@@ -149,29 +149,16 @@ elif page == "Reviews":
         
     st.markdown('A **sentiment analysis** of the reviews has also been carried out. You can see a visualisation of the distribution of sentiment between positive, negative or neutral:')
         
-    '''# Open html file
-    with open("images/sentimentalanalysis.html", 'r', encoding='utf-8') as SentFile:
+    # Open html file
+    #with open("images/sentimentalanalysis.html", 'r', encoding='utf-8') as SentFile:
+    HtmlFile = open("images/sentimentalanalysis.html", 'r', encoding='utf-8')
     # Read and load into source_code variable
-        source_code = SentFile.read()
+        source_code = HtmlFile.read()
         print(source_code)
 
     # View content on Streamlit
-    components.html(source_code, height=600)'''
+    components.html(source_code, height=600)
 
-    file_path = "test.html"
-    if not os.path.isfile(file_path):
-        st.error(f"El archivo {file_path} no existe. Verifica la ruta y el nombre del archivo.")
-    else:
-        try:
-            with open(file_path, 'r', encoding='utf-8') as SentFile:
-                # Leer el contenido del archivo HTML
-                source_code = SentFile.read()
-                st.success("Archivo HTML leído correctamente.")
-            
-                # Mostrar el contenido HTML en Streamlit
-                components.html(source_code, height=600)
-        except Exception as e:
-            st.error(f"Error al leer el archivo: {e}")
 
 
 # PAGE 4-------------------------------------
