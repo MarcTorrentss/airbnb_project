@@ -156,7 +156,7 @@ elif page == "Price predictor":
     
     # Files upload    
     scaler = load('files/scaler.pkl') # Load the scaler
-    model = load('models/model.pkl') # Load the best model trained
+    model = load('models/price_SVR.pkl') # Load the best model trained
 
     # Encoders
     with open("files/mapeo_barrio.json", "r") as json_file:
