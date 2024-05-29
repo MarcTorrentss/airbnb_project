@@ -31,8 +31,14 @@ The data to be worked with corresponds to the register of Airbnb listings publis
         - Data splitting using train_test_split() from scikit-learn.
         - Data normalisation using ``StandardScaler()``.
         - Training of different regression models.
+      
+    3. ``NLP.ipynb``. **Natural Language Processing**:
+        - Creation of a **word cloud** visualisation illustrating the frequency and importance of words in the textual data, based on the list reviews.
+        - **Sentiment analysis** of reviews and distribution of sentiment between positive, negative or neutral. Visualization.
 
 - **Streamlit application**: An interactive Streamlit application has been developed that allows exploration and visualisation of the analysed data. It is available at https://airbnb-ny.streamlit.app/
+
+'[VIDEO]'
 
 ### Running instructions 💻
 
