@@ -149,7 +149,9 @@ elif page == "Reviews":
     st.write('-------------')
         
     st.markdown('A **sentiment analysis** of the reviews has also been carried out. You can see a visualisation of the distribution of sentiment between positive, negative or neutral:')
-        
+
+    st.title("Mítica imagen cinematográfica de New York 🏢🐒")
+    
     # Open html file
     with open("images/sentimentanalysis.html", 'r', encoding='utf-8') as SentFile:
         # Read and load into source_code variable
