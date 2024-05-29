@@ -142,15 +142,14 @@ elif page == "Airbnb info":
 # PAGE 3-------------------------------------
 elif page == "Reviews":
     st.markdown('A **word cloud** has been created from the accommodation reviews to show you the most common words based on their size:')   
-      
+
+    st.title("Icónica imagen cinematográfica de la ciudad de New York 🏢🐒")
     wordcloud = "images/nube_airbnb.png"
 
     st.image(wordcloud, width=500, use_column_width=True)
     st.write('-------------')
         
     st.markdown('A **sentiment analysis** of the reviews has also been carried out. You can see a visualisation of the distribution of sentiment between positive, negative or neutral:')
-
-    st.title("Mítica imagen cinematográfica de New York 🏢🐒")
     
     # Open html file
     with open("images/sentimentanalysis.html", 'r', encoding='utf-8') as SentFile:
