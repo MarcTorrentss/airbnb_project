@@ -149,15 +149,14 @@ elif page == "Reviews":
         
     st.markdown('A **sentiment analysis** of the reviews has also been carried out. You can see a visualisation of the distribution of sentiment between positive, negative or neutral:')
         
-    # Open html files
-    SentFile = open("images/sentimentalanalysis.html", 'r', encoding='utf-8')
-        
+    # Open html file
+    with open("images/sentimentalanalysis.html", 'r', encoding='utf-8') as SentFile:
     # Read and load into source_code variable
-    source_code = SentFile.read() 
-    print(source_code)
-    
-    # view content on streamlit
-    components.html(source_code, height = 600)
+        source_code = SentFile.read()
+        print(source_code)
+
+    # View content on Streamlit
+    components.html(source_code, height=600)
 
 
 
