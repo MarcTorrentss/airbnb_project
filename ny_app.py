@@ -158,7 +158,7 @@ elif page == "Reviews":
     # View content on Streamlit
     components.html(source_code, height=600)'''
 
-    file_path = "images/sentimentalanalysis.html"
+    file_path = "images/test.html"
     if not os.path.isfile(file_path):
         st.error(f"El archivo {file_path} no existe. Verifica la ruta y el nombre del archivo.")
     else:
