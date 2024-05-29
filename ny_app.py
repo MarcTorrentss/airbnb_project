@@ -161,7 +161,7 @@ elif page == "Reviews":
     # components.html(source_code, height=600)
 
     # Verificación de la existencia del archivo HTML
-    file_path = "images/sentimentalanalysis.html"
+    file_path = "images/sentimentanalysis.html"
 
     if not os.path.isfile(file_path):
         st.error(f"El archivo {file_path} no existe. Verifica la ruta y el nombre del archivo.")
