@@ -144,7 +144,7 @@ elif page == "Reviews":
       
         wordcloud = "images/nube_airbnb.png"
 
-        st.image(wordcloud,width=500, use_column_width=True)
+        st.image(wordcloud, width=500, long=300, use_column_width=True)
         st.write('-------------')
         
         st.markdown('A **sentiment analysis** of the reviews has also been carried out. You can see a visualisation of the distribution of sentiment between positive, negative or neutral:')
