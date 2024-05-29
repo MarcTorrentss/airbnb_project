@@ -140,9 +140,21 @@ elif page == "Airbnb info":
 
 # PAGE 3-------------------------------------
 elif page == "Reviews":
-        
-    st.markdown('Developing..')
+        st.markdown('A **word cloud** has been created from the accommodation reviews to show you the most common words based on their size:')   
+      
+        wordcloud = "../images/nube_airbnb.png"
 
+        st.image(wordcloud,width=500, use_column_width=True)
+        st.write('-------------')
+        
+        st.markdown('A **sentiment analysis** of the reviews has also been carried out. You can see a visualisation of the distribution of sentiment between positive, negative or neutral:')
+        # Open html files
+        SentFile = open("../images/sentimentalanalysis.html", 'r', encoding='utf-8')
+        # Read and load into source_code variable
+        source_code = SentFile.read() 
+        print(source_code)
+        # view content on streamlit
+        components.html(source_code, height = 600)
 
 
 # PAGE 4-------------------------------------
