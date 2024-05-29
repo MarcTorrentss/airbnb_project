@@ -159,7 +159,7 @@ elif page == "Price predictor":
     model = load('models/model.pkl') # Load the best model trained
 
     # Encoders
-    with open("files/mapeo.json", "r") as json_file:
+    with open("files/mapeo_barrio.json", "r") as json_file:
         # Loads the content of the JSON file into a dictionary
         encoder_neighbourhood = json.load(json_file)
 
@@ -172,19 +172,11 @@ elif page == "Price predictor":
     'Staten Island': df[df['neighbourhood_group_cleansed'] == 'Staten Island']['neighbourhood_cleansed'].unique().tolist()
     }
 
-    with open("files/mapeo2.json", "r") as json_file:
+    with open("files/mapeo_room.json", "r") as json_file:
         # Loads the content of the JSON file into a dictionary
         encoder_room = json.load(json_file)
         
-    room = ['Private room', 'Entire home/apt', 'Hotel room', 'Shared room']
-
-    
-    with open("files/mapeo3.json", "r") as json_file:
-        # Loads the content of the JSON file into a dictionary
-        encoder_property = json.load(json_file)
-
-    property = ['Apartment', 'House', 'Condominium', 'Townhouse', 'Hotel', 'Loft', 'Guest suite']
-
+    room = ['Entire home/apt', 'Private room', 'Shared room', 'Hotel room']
     
     # --------------------------------------------------------------------------------------
 
@@ -205,21 +197,18 @@ elif page == "Price predictor":
     if st.session_state.district_selected:
     
         with st.form("prediction_form"): 
-            room_type = st.selectbox('Tipo habitacion:', room)
+            room_type = st.selectbox('Room type:', room)
             accom = st.number_input('No. of travellers:', value=1)
-            property_type = st.selectbox('Tipo airbnb:', property)
             beds = st.number_input('No. of beds:', value=1)
             barrio = st.selectbox('Select a neighborhood', ['Choose...'] + districts[distrito])
             
             submit_button = st.form_submit_button(label='Predict the price')
 
-            if submit_button:
-                #input_data = pd.DataFrame([[beds, accom, bath, barrio]], columns=['beds', 'accommodates', 'bathrooms', 'neighbourhood_cleansed']) 
-                input_data = pd.DataFrame([[room_type, accom, property_type, beds, barrio]], columns=['room_type', 'accommodates', 'property_type', 'beds', 'neighbourhood_cleansed']) 
+            if submit_button: 
+                input_data = pd.DataFrame([[room_type, accom, beds, barrio]], columns=['room_type', 'accommodates', 'beds', 'neighbourhood_cleansed']) 
                 
                 # 1 - Encode what the user types into numbers using the mapping json.
                 input_data['room_type'] = input_data['room_type'].replace(encoder_room)
-                input_data['property_type'] = input_data['property_type'].replace(encoder_property)
                 input_data['neighbourhood_cleansed'] = input_data['neighbourhood_cleansed'].replace(encoder_neighbourhood)
         
                 # 2 - Normalise the input data
