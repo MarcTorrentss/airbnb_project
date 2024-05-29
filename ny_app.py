@@ -143,7 +143,7 @@ elif page == "Airbnb info":
 elif page == "Reviews":
     st.markdown('A **word cloud** has been created from the accommodation reviews to show you the most common words based on their size:')   
 
-    st.title("Icónica imagen cinematográfica de la ciudad de New York 🏢🐒")
+    st.markdown("<h2 style='text-align: center;'>One of the iconic cinematic images of New York City 🏢🐒</h2>", unsafe_allow_html=True)
     wordcloud = "images/nube_airbnb.png"
 
     st.image(wordcloud, width=500, use_column_width=True)
