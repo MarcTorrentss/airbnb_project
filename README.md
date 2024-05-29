@@ -38,8 +38,6 @@ The data to be worked with corresponds to the register of Airbnb listings publis
 
 - **Streamlit application**: An interactive Streamlit application has been developed that allows exploration and visualisation of the analysed data. It is available at https://airbnb-ny.streamlit.app/
 
-'[VIDEO]'
-
 ### Running instructions 💻
 
 To run this project on your local machine, follow the steps below:
@@ -50,6 +48,10 @@ To run this project on your local machine, follow the steps below:
 4. This will open a web browser ``http://localhost:8501/`` which will take you to the application.
 
 ## Streamlit App demo 📹
+
+<br>
+
+</br>
 
 ### To do ⚙️
 
