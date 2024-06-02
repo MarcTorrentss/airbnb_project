@@ -293,16 +293,7 @@ elif page == "Airbnb info":
         st.markdown('### Neighbourhood VS Average price')
         st.write('It would also be interesting to know the average price for each neighbourhood')
             
-        select_people = df[df['accommodates'] == 2]
-
-        feq_price = select_people.groupby(['neighbourhood_cleansed'])['price'].mean()
-        feq_price = feq_price.sort_values(ascending=False)
-        feq_price = feq_price.to_frame().reset_index()
-        feq_price = feq_price.rename(columns = {"neighbourhood_cleansed":"neighbourhood", "price":"average_price"})
-        adam = pd.merge(adam, feq_price, on='neighbourhood', how='left')
-        adam.rename(columns={'price': 'average_price'}, inplace=True)
-        adam.average_price = adam.average_price.round(decimals=0)
-        adam = adam.dropna()
+        adam = pd.read_csv("datasets/adam2.csv")
         
         map_dict = adam.set_index('neighbourhood')['average_price'].to_dict()
         color_scale = LinearColormap(['green','yellow','orange','red','brown'], vmin = min(map_dict.values()), vmax = max(map_dict.values()))
