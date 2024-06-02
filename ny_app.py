@@ -158,7 +158,7 @@ elif page == "Airbnb info":
         ##  1. District VS No. of accommodations
 
         st.markdown('### District VS No. of accommodations')
-        st.write('First of all, we are interested in the distribution of accommodation in each district. We can see that in Manhattan and Brooklyn the number of accommodations or advertisements is much higher than in the other districts:')
+        st.write('First of all, we are interested in the distribution of accommodation in each district. We can see that in ``Manhattan`` and ``Brooklyn`` the number of accommodations or advertisements is much higher than in the other districts:')
             
         accom_district = df['neighbourhood_group_cleansed'].value_counts().sort_values(ascending=True)
             
@@ -220,7 +220,7 @@ elif page == "Airbnb info":
         st.markdown('### Types of properties')
         st.write('We can see that the vast majority of Airbnbs in New York are ``apartments``, with a significant difference compared to the second category, which is ``houses``. This makes sense since when you see the city buildings.')
             
-        accom_properties = df['neighbourhood_cleansed'].value_counts().sort_values(ascending=True)
+        accom_properties = df['property_type'].value_counts().sort_values(ascending=True)
         
         # Plotly bar chart
         fig = px.bar(accom_properties, x=accom_properties.values, y=accom_properties.index, color=accom_properties.values, text_auto = False) 
