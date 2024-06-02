@@ -12,3 +12,7 @@ joblib
 pycaret
 xgboost
 scikit-learn
+geopandas
+fiona
+shapely
+pyproj
