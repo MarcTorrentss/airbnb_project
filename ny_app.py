@@ -217,11 +217,48 @@ elif page == "Airbnb info":
 
         ##  4. Property types
 
+        freq_proptype = df['property_type'].value_counts()
+        freq_proptype = freq_proptype[freq_proptype > 45]
+
+        # We modify the property type values
+        list_proptype = freq_proptype.index.to_list()
+        dict_proptype = {list_proptype[0]:'Apartment',
+        list_proptype[1]:'Apartment',
+        list_proptype[2]:'House',
+        list_proptype[3]:'Condominium',
+        list_proptype[4]:'House',
+        list_proptype[5]:'Townhouse',
+        list_proptype[6]:'Loft',
+        list_proptype[7]:'Hotel',
+        list_proptype[8]:'Townhouse',
+        list_proptype[9]:'Apartment',
+        list_proptype[10]:'Condominium',
+        list_proptype[11]:'Hotel',
+        list_proptype[12]:'Apartment',
+        list_proptype[13]:'Guest suite',
+        list_proptype[14]:'Apartment',
+        list_proptype[15]:'Loft',
+        list_proptype[16]:'Guest suite',
+        list_proptype[17]:'House',
+        list_proptype[18]:'Apartment',
+        list_proptype[19]:'House',
+        list_proptype[20]:'Aparthotel',
+        list_proptype[21]:'B&B',
+        list_proptype[22]:'Apartment',
+        list_proptype[23]:'House',
+        list_proptype[24]:'House',}
+        df = df.replace({"property_type": dict_proptype})
+        
         st.markdown('### Types of properties')
         st.write('We can see that the vast majority of Airbnbs in New York are ``apartments``, with a significant difference compared to the second category, which is ``houses``. This makes sense since when you see the city buildings.')
-            
-        accom_properties = df['property_type'].value_counts().sort_values(ascending=True)
-        
+
+        accom_properties = df.groupby(['property_type','room_type']).room_type.count()
+        accom_properties = prop.unstack()
+        accom_properties['total'] = prop.iloc[:,0:4].sum(axis = 1)
+        accom_properties = prop.sort_values(by=['total'])
+        accom_properties = prop[prop['total']>=100]
+        accom_properties = prop.drop(columns=['total'])
+
         # Plotly bar chart
         fig = px.bar(accom_properties, x=accom_properties.values, y=accom_properties.index, color=accom_properties.values, text_auto = False) 
         fig.update_layout(
