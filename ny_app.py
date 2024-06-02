@@ -145,7 +145,53 @@ elif page == "Airbnb info":
     folium.Marker(location=[latitud_1,longitud_1]).add_to(map)
     folium_static(map)
 
+    st.markdown("""
+            ### What would you like to know? Select a tab:              
+        """)
 
+    # ---------------------TABS (pestañas)----------------------#
+    tab1, tab2, tab3, tab4 = st.tabs(
+        ['Accomodations','Price', 'Score','Maps']) 
+    with tab1:
+
+        ##  1. District VS No. of accommodations
+
+        st.markdown('### District VS No. of accommodations')
+        st.write('First of all, we are interested in the distribution of accommodation in each district. We can see that in Manhattan the number of accommodations or advertisements is much higher than in the other districts:')
+            
+        accom_district = df['neighbourhood_group_cleansed'].value_counts().sort_values(ascending=True)
+            
+        # Plotly bar chart
+        fig = px.bar(accom_district, x=accom_district.values, y=accom_district.index, color=accom_district.values, color_continuous_scale='BrBG', text_auto = False) 
+        fig.update_layout(
+                title='Number of accommodations by district in New York', title_x=0.23, 
+                yaxis_title='Districts',
+                xaxis_title='No. of Airbnb offers',
+                template='plotly_white',
+                width=690, height=500, coloraxis_colorbar_title='No. of Airbnb offers')   
+
+        st.plotly_chart(fig)
+
+
+                ##  2. District VS No. of accommodations
+
+        st.markdown('### Neighbourhood VS No. of accommodations')
+        st.write('Looking closer, now we represent the distribution of airbnbs accommodation in each neighbourhood.')
+            
+        accom_neigh = df['neighbourhood_cleansed'].value_counts().sort_values(ascending=True)
+            
+        # Plotly bar chart
+        fig = px.bar(accom_neigh, x=accom_neigh.values, y=accom_neigh.index, color=accom_neigh.values, color_continuous_scale='BrBG', text_auto = False) 
+        fig.update_layout(
+                title='Number of accommodations by neighbourhoods in New York', title_x=0.23, 
+                yaxis_title='Neighbourhoods',
+                xaxis_title='No. of Airbnb offers',
+                template='plotly_white',
+                width=690, height=500, coloraxis_colorbar_title='No. of Airbnb offers')   
+
+        st.plotly_chart(fig)
+        
+        
 
 # PAGE 3-------------------------------------
 elif page == "Reviews":
