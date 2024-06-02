@@ -140,26 +140,16 @@ elif page == "Airbnb info":
     st.markdown('Here you can see the different accommodations on offer and where they are located. Zoom in on the map to see more:')
     latitud = df['latitude'].tolist()
     longitud = df['longitude'].tolist()
-    coordinates = list(zip(latitud,longitud))
+    coordinates = list(zip(latitud, longitud))
     # Define the initial location of the map
     latitud_1 = df['latitude'].iloc[0]
     longitud_1 = df['longitude'].iloc[0]
     # Create the Folium map with the specified starting location
-    map = folium.Map(location = [latitud_1,longitud_1],zoom_start=10)
+    map = folium.Map(location = [latitud_1, longitud_1], zoom_start=10)
     # Adding locations to the generated Folium map
     FastMarkerCluster(data=coordinates).add_to(map) # It is used to group the closest markers into clusters.
     folium.Marker(location=[latitud_1,longitud_1]).add_to(map)
-    folium_static(map) 
-    
-    st.markdown("""
-            ### What would you like to know? Select a tab:              
-        """)
-
-    # ---------------------TABS (pestañas)----------------------#
-    # tab1, tab2, tab3, tab4 = st.tabs(
-    #    ['Accomodations','Price', 'Score','Maps']) 
-    # with tab1:
-    st.markdown('Developing..')
+    folium_static(map)
 
 
 
