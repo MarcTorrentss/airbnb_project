@@ -259,16 +259,19 @@ elif page == "Airbnb info":
         accom_properties = prop[prop['total']>=100]
         accom_properties = prop.drop(columns=['total'])
 
-        plt.rc('xtick', labelsize=14)
-        plt.rc('ytick', labelsize=14)
-        accom_properties.plot(kind='barh',stacked=True, color = ["r","y","b","g"],
-              linewidth = 1, grid=True, figsize=(13,9), width=0.5)
-        plt.title('Property types in New York', fontsize=20)
-        plt.xlabel('Number of airbnbs', fontsize=15)
-        plt.ylabel("")
-        plt.legend(loc = 4, prop = {"size" : 15})
-        plt.rc('ytick', labelsize=13)
-        plt.show()
+        accom_properties = df['property_type'].value_counts().sort_values(ascending=True)
+        accom_properties = accom_properties[accom_properties > 100]
+        
+        # Plotly bar chart
+        fig = px.bar(accom_properties, x=accom_properties.values, y=accom_properties.index, color=accom_properties.values, text_auto = False) 
+        fig.update_layout(
+                title='Property types in New York', title_x=0.23, 
+                yaxis_title='Property types',
+                xaxis_title='No. of Airbnb offers',
+                template='plotly_white',
+                width=690, height=500, coloraxis_colorbar_title='No. of Airbnb offers')   
+
+        st.plotly_chart(fig)
         
 
     with tab3:
