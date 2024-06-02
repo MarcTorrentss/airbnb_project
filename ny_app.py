@@ -20,6 +20,8 @@ import folium
 from folium.plugins import FastMarkerCluster
 from streamlit_folium import folium_static, st_folium
 from branca.colormap import LinearColormap
+import geopandas as gpd
+from shapely.geometry import Point
 
 # Prediction
 import xgboost as xgb
