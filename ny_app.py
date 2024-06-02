@@ -294,7 +294,7 @@ elif page == "Airbnb info":
         st.write('It would also be interesting to know the average price for each neighbourhood')
 
         with st.form("choose_accomodates"):
-            No_accomodates = st.selectbox('Choose the number of accomodates:', ['Choose...'] + [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]) # Selectbox (Accomodates)
+            No_accomodates = st.selectbox('Choose the number of accomodates:', ['Choose...'] + list(range(1, 17))) # Selectbox (Accomodates)
             accomodates_button = st.form_submit_button(label='Choose No. of accomodates')
         
             if accomodates_button:
@@ -333,7 +333,7 @@ elif page == "Airbnb info":
                        },
                    highlight_function=lambda feature: {'weight':3, 'fillColor': get_color(feature), 'fillOpacity': 0.8}).add_to(map2)      
             
-                folium_static(map2)
+                st_folium(map2)
 
                 st.write('We see that the highest concentration of the highest average daily prices for Airbnb is in tourist zone, ``Manhattan`` and in the ``Brooklyn`` area that is close to the center.')
         
