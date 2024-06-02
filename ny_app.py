@@ -298,6 +298,8 @@ elif page == "Airbnb info":
             
         adam = gpd.read_file("../files/neighbourhoods.geojson")
 
+        select_people = df[df['accommodates'] == 2]
+        
         feq1 = select_people.groupby(['neighbourhood_cleansed'])['price'].mean()
         feq1 = feq1.sort_values(ascending=False)
         feq1 = feq1.to_frame().reset_index()
