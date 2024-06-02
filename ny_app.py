@@ -275,7 +275,7 @@ elif page == "Airbnb info":
         accom_accomodates = df['accommodates'].value_counts().sort_values(ascending=True)
             
         # Plotly bar chart
-        fig = px.bar(accom_accomodates, x=accom_accomodates.values, y=accom_accomodates.index, color=accom_accomodates.values, text_auto = False) 
+        fig = px.bar(accom_accomodates, x=accom_accomodates.index, y=accom_accomodates.values, text_auto = False) 
         fig.update_layout(
                 title='Number of listings by accomodates in New York', title_x=0.23, 
                 yaxis_title='No. of Airbnb offers',
