@@ -265,7 +265,27 @@ elif page == "Airbnb info":
                 width=690, height=500, coloraxis_colorbar_title='No. of Airbnb offers')   
 
         st.plotly_chart(fig)
-        
+
+
+        ##  6. Room types
+
+        st.markdown('### Number of listings by accomodates')
+        st.write('The majority of bookings are for ``1 to 4 people``, with ``2 people`` standing out with a significant advantage.')
+            
+        accom_accomodates = df['accommodates'].value_counts().sort_values(ascending=True)
+            
+        # Plotly bar chart
+        fig = px.bar(accom_accomodates, x=accom_accomodates.values, y=accom_accomodates.index, color=accom_accomodates.values, text_auto = False) 
+        fig.update_layout(
+                title='Number of listings by accomodates in New York', title_x=0.23, 
+                yaxis_title='No. of Airbnb offers',
+                xaxis_title='No. of accommodates',
+                template='plotly_white',
+                width=690, height=500, coloraxis_colorbar_title='No. of Airbnb offers')   
+
+        st.plotly_chart(fig)
+
+    
 
     with tab3:
                 
@@ -288,6 +308,7 @@ elif page == "Airbnb info":
         yaxis_title='Average price per night')
 
         st.plotly_chart(fig)
+
         
 
 # PAGE 3-------------------------------------
