@@ -157,7 +157,7 @@ elif page == "Airbnb info":
     tab1, tab2, tab3, tab4 = st.tabs(
         ['Accomodations','Price', 'Score','Maps']) 
     with tab1:
-    st.markdown('Developing..')
+        st.markdown('Developing..')
 
 
 
