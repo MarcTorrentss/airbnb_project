@@ -296,9 +296,16 @@ elif page == "Airbnb info":
         st.markdown('### Neighbourhood VS Average price')
         st.write('It would also be interesting to know the average price for each neighbourhood')
             
-        adam = pd.read_csv("datasets/adam2.csv")
-        geometry = [Point(xy) for xy in zip(adam['longitude'], adam['latitude'])]
-        adam = gpd.GeoDataFrame(adam, geometry=geometry)
+        adam = gpd.read_file("../files/neighbourhoods.geojson")
+
+        feq1 = select_people.groupby(['neighbourhood_cleansed'])['price'].mean()
+        feq1 = feq1.sort_values(ascending=False)
+        feq1 = feq1.to_frame().reset_index()
+        feq1 = feq1.rename(columns = {"neighbourhood_cleansed":"neighbourhood", "price":"average_price"})
+        adam = pd.merge(adam, feq1, on='neighbourhood', how='left')
+        adam.rename(columns={'price': 'average_price'}, inplace=True)
+        adam.average_price = adam.average_price.round(decimals=0)
+        adam = adam.dropna()
         
         map_dict = adam.set_index('neighbourhood')['average_price'].to_dict()
         color_scale = LinearColormap(['green','yellow','orange','red','brown'], vmin = min(map_dict.values()), vmax = max(map_dict.values()))
