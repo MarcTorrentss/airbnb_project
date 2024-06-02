@@ -297,10 +297,11 @@ elif page == "Airbnb info":
         st.write('It would also be interesting to know the average price for each neighbourhood')
             
         # Obtener la ruta al archivo GeoJSON
-        file_path = os.path.join("files", "neighbourhoods.geojson")
+        #file_path = os.path.join("files", "neighbourhoods.geojson")
 
         # Cargar el archivo GeoJSON con GeoPandas
-        adam = gpd.read_file(file_path)
+        #adam = gpd.read_file(file_path)
+        adam = gpd.read_file("files/neighbourhoods.geojson")
 
         with st.form("choose_accomodates"):
             No_accomodates = st.selectbox('Choose the number of accomodates:', ['Choose...'] + list(range(1, 17))) # Selectbox (Accomodates)
