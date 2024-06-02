@@ -18,7 +18,8 @@ from plotly.subplots import make_subplots
 # Interactive maps
 import folium
 from folium.plugins import FastMarkerCluster
-from streamlit_folium import folium_static
+from streamlit_folium import folium_static, st_folium
+from branca.colormap import LinearColormap
 
 # Prediction
 import xgboost as xgb
