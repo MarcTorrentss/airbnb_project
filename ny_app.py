@@ -150,14 +150,15 @@ elif page == "Airbnb info":
         """)
 
     # ---------------------TABS (pestañas)----------------------#
-    tab1, tab2, tab3, tab4 = st.tabs(
-        ['Accomodations','Price', 'Score','Maps']) 
+    tab1, tab2, tab3, tab4, tab5 = st.tabs(
+        ['Accomodations', 'Room and Property', 'Price', 'Score', 'Maps'])
+    
     with tab1:
 
         ##  1. District VS No. of accommodations
 
         st.markdown('### District VS No. of accommodations')
-        st.write('First of all, we are interested in the distribution of accommodation in each district. We can see that in Manhattan the number of accommodations or advertisements is much higher than in the other districts:')
+        st.write('First of all, we are interested in the distribution of accommodation in each district. We can see that in Manhattan and Brooklyn the number of accommodations or advertisements is much higher than in the other districts:')
             
         accom_district = df['neighbourhood_group_cleansed'].value_counts().sort_values(ascending=True)
             
@@ -173,7 +174,7 @@ elif page == "Airbnb info":
         st.plotly_chart(fig)
 
 
-                ##  2. District VS No. of accommodations
+        ##  2. District VS No. of accommodations
 
         st.markdown('### Neighbourhood VS No. of accommodations')
         st.write('Looking closer, now we represent the distribution of airbnbs accommodation in each neighbourhood.')
@@ -191,7 +192,69 @@ elif page == "Airbnb info":
                 width=690, height=500, coloraxis_colorbar_title='No. of Airbnb offers')   
 
         st.plotly_chart(fig)
+
+
+    with tab2:
+
+        ##  3. Room types
+
+        st.markdown('### Types of room bookings')
+        st.write('We see that almost all Airbnbs in the city are ``entire apartments`` and ``private rooms``.')
+            
+        accom_rooms = df['room_type'].value_counts().sort_values(ascending=True)
+            
+        # Plotly bar chart
+        fig = px.bar(accom_rooms, x=accom_rooms.values, y=accom_rooms.index, color=accom_rooms.values, text_auto = False) 
+        fig.update_layout(
+                title='Room types in New York', title_x=0.23, 
+                yaxis_title='Room types',
+                xaxis_title='No. of Airbnb offers',
+                template='plotly_white',
+                width=690, height=500, coloraxis_colorbar_title='No. of Airbnb offers')   
+
+        st.plotly_chart(fig)
+
+
+        ##  4. Property types
+
+        st.markdown('### Types of properties')
+        st.write('We can see that the vast majority of Airbnbs in New York are ``apartments``, with a significant difference compared to the second category, which is ``houses``. This makes sense since when you see the city buildings.')
+            
+        accom_properties = df['neighbourhood_cleansed'].value_counts().sort_values(ascending=True)
         
+        # Plotly bar chart
+        fig = px.bar(accom_properties, x=accom_properties.values, y=accom_properties.index, color=accom_properties.values, text_auto = False) 
+        fig.update_layout(
+                title='Property types in New York', title_x=0.23, 
+                yaxis_title='Property types',
+                xaxis_title='No. of Airbnb offers',
+                template='plotly_white',
+                width=690, height=500, coloraxis_colorbar_title='No. of Airbnb offers')   
+
+        st.plotly_chart(fig)
+        
+
+    with tab3:
+                
+        ## 5. Neighbourhood VS Average price
+
+        st.markdown('### Neighbourhood VS Average price')
+        st.write('It would also be interesting to know the average price for each neighbourhood. As expected, staying in the historic centre is more expensive:')
+            
+        neigh_price = df.groupby('neighbourhood_cleansed')['price'].mean().sort_values(ascending=True)
+            
+        #Plotly bar chart
+        fig = px.bar(neigh_price,
+                        color=neigh_price.values,
+                        color_continuous_scale='tempo', 
+                        template='plotly_white',
+                        width=690, height=500)
+
+        fig.update_layout(title='Average price per accommodation and neighbourhood', title_x=0.23, coloraxis_colorbar_title='Average price', 
+        xaxis_title='Neighbourhoods',
+        yaxis_title='Average price per night')
+
+        st.plotly_chart(fig)
         
 
 # PAGE 3-------------------------------------
