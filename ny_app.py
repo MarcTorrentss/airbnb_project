@@ -29,6 +29,7 @@ warnings.simplefilter(action='ignore', category=(SettingWithCopyWarning))
 
 
 # ---------------------SITE CONFIGURATION---------------------- #
+
 st.set_page_config(
     page_title="Airbnb: New York",
     page_icon="🗽",
@@ -55,14 +56,7 @@ page = option_menu(None, ["Home", "Airbnb info", "Reviews", "Price predictor"],
 
 # ---------------------LOAD DATA---------------------- #
 
-# read data
-# @st.cache_data()
-# def load_data():
 df = pd.read_csv("datasets/df_short.csv")
-#    return df
-
-# load data
-# df = load_data()
 
 
 # ---------------------BACKGROUND IMAGE---------------------- #
