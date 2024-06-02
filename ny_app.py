@@ -359,7 +359,6 @@ elif page == "Reviews":
     with open("images/sentimentanalysis.html", 'r', encoding='utf-8') as SentFile:
         # Read and load into source_code variable
         source_code = SentFile.read()
-        print(source_code)
 
     # View content on Streamlit
     components.html(source_code, height=600)
