@@ -252,13 +252,6 @@ elif page == "Airbnb info":
         st.markdown('### Types of properties')
         st.write('We can see that the vast majority of Airbnbs in New York are ``apartments``, with a significant difference compared to the second category, which is ``houses``. This makes sense since when you see the city buildings.')
 
-        accom_properties = df.groupby(['property_type','room_type']).room_type.count()
-        accom_properties = prop.unstack()
-        accom_properties['total'] = prop.iloc[:,0:4].sum(axis = 1)
-        accom_properties = prop.sort_values(by=['total'])
-        accom_properties = prop[prop['total']>=100]
-        accom_properties = prop.drop(columns=['total'])
-
         accom_properties = df['property_type'].value_counts().sort_values(ascending=True)
         accom_properties = accom_properties[accom_properties > 100]
         
