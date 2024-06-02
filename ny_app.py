@@ -293,51 +293,49 @@ elif page == "Airbnb info":
         st.markdown('### Neighbourhood VS Average price')
         st.write('It would also be interesting to know the average price for each neighbourhood')
 
-        No_accomodates = st.selectbox('Choose the number of accomodates:', ['Choose...'] + [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]) # Selectbox (Accomodates)
-        accomodates_button = st.form_submit_button(label='Choose No. of accomodates')
+        with st.form("choose_accomodates"):
+            No_accomodates = st.selectbox('Choose the number of accomodates:', ['Choose...'] + [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]) # Selectbox (Accomodates)
+            accomodates_button = st.form_submit_button(label='Choose No. of accomodates')
         
-        if accomodates_button:
+            if accomodates_button:
             
-            select_people = df[df['accommodates'] == No_accomodates]
+                select_people = df[df['accommodates'] == No_accomodates]
 
-            feq_price = No_accomodates.groupby(['neighbourhood_cleansed'])['price'].mean()
-            feq_price = feq_price.sort_values(ascending=False)
-            feq_price = feq_price.to_frame().reset_index()
-            feq_price = feq_price.rename(columns = {"neighbourhood_cleansed":"neighbourhood", "price":"average_price"})
-            adam = pd.merge(adam, feq_price, on='neighbourhood', how='left')
-            adam.rename(columns={'price': 'average_price'}, inplace=True)
-            adam.average_price = adam.average_price.round(decimals=0)
-            adam = adam.dropna()
+                feq_price = No_accomodates.groupby(['neighbourhood_cleansed'])['price'].mean()
+                feq_price = feq_price.sort_values(ascending=False)
+                feq_price = feq_price.to_frame().reset_index()
+                feq_price = feq_price.rename(columns = {"neighbourhood_cleansed":"neighbourhood", "price":"average_price"})
+                adam = pd.merge(adam, feq_price, on='neighbourhood', how='left')
+                adam.rename(columns={'price': 'average_price'}, inplace=True)
+                adam.average_price = adam.average_price.round(decimals=0)
+                adam = adam.dropna()
         
-            map_dict = adam.set_index('neighbourhood')['average_price'].to_dict()
-            color_scale = LinearColormap(['green','yellow','orange','red','brown'], vmin = min(map_dict.values()), vmax = max(map_dict.values()))
+                map_dict = adam.set_index('neighbourhood')['average_price'].to_dict()
+                color_scale = LinearColormap(['green','yellow','orange','red','brown'], vmin = min(map_dict.values()), vmax = max(map_dict.values()))
 
-            def get_color(feature):
-                value = map_dict.get(feature['properties']['neighbourhood'])
-                return color_scale(value)
+                def get_color(feature):
+                    value = map_dict.get(feature['properties']['neighbourhood'])
+                    return color_scale(value)
             
-            # Create the Folium map with the specified starting location
-            map2 = folium.Map(location = [latitud_1, longitud_1], zoom_start=10)
-            folium.GeoJson(data=adam, name='New york',
-               tooltip=folium.features.GeoJsonTooltip(fields=['neighbourhood', 'average_price'],
+                # Create the Folium map with the specified starting location
+                map2 = folium.Map(location = [latitud_1, longitud_1], zoom_start=10)
+                folium.GeoJson(data=adam, name='New york',
+                   tooltip=folium.features.GeoJsonTooltip(fields=['neighbourhood', 'average_price'],
                                                       labels=True,
                                                       sticky=False),
 
-               style_function= lambda feature: {
-                   'fillColor': get_color(feature),
-                   'color': 'black',
-                   'weight': 1,
-                   'dashArray': '5, 5',
-                   'fillOpacity':0.5
-                   },
-               highlight_function=lambda feature: {'weight':3, 'fillColor': get_color(feature), 'fillOpacity': 0.8}).add_to(map2)      
+                   style_function= lambda feature: {
+                       'fillColor': get_color(feature),
+                       'color': 'black',
+                       'weight': 1,
+                       'dashArray': '5, 5',
+                       'fillOpacity':0.5
+                       },
+                   highlight_function=lambda feature: {'weight':3, 'fillColor': get_color(feature), 'fillOpacity': 0.8}).add_to(map2)      
             
-            # Adding locations to the generated Folium map
-            FastMarkerCluster(data=coordinates).add_to(map2) # It is used to group the closest markers into clusters.
-            folium.Marker(location=[latitud_1,longitud_1]).add_to(map2)
-            folium_static(map2)
+                map2
 
-            st.write('We see that the highest concentration of the highest average daily prices for Airbnb is in tourist zone, ``Manhattan`` and in the ``Brooklyn`` area that is close to the center.')
+                st.write('We see that the highest concentration of the highest average daily prices for Airbnb is in tourist zone, ``Manhattan`` and in the ``Brooklyn`` area that is close to the center.')
         
 
 
