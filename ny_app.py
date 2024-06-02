@@ -296,11 +296,6 @@ elif page == "Airbnb info":
         st.markdown('### Neighbourhood VS Average price')
         st.write('It would also be interesting to know the average price for each neighbourhood')
             
-        # Obtener la ruta al archivo GeoJSON
-        #file_path = os.path.join("files", "neighbourhoods.geojson")
-
-        # Cargar el archivo GeoJSON con GeoPandas
-        #adam = gpd.read_file(file_path)
         adam = gpd.read_file("files/neighbourhoods.geojson")
 
         with st.form("choose_accomodates"):
