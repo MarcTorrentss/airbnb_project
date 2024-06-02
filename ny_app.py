@@ -56,13 +56,13 @@ page = option_menu(None, ["Home", "Airbnb info", "Reviews", "Price predictor"],
 # ---------------------LOAD DATA---------------------- #
 
 # read data
-@st.cache_data()
-def load_data():
-    df = pd.read_csv("datasets/df_short.csv")
-    return df
+# @st.cache_data()
+# def load_data():
+df = pd.read_csv("datasets/df_short.csv")
+#    return df
 
 # load data
-df = load_data()
+# df = load_data()
 
 
 # ---------------------BACKGROUND IMAGE---------------------- #
