@@ -294,7 +294,7 @@ elif page == "Airbnb info":
         st.write('It would also be interesting to know the average price for each neighbourhood')
 
         with st.form("choose_accomodates"):
-            No_accomodates = st.selectbox('Choose the number of accomodates:', ['Choose...'] + list(range(1, 17))) # Selectbox (Accomodates)
+            No_accomodates = st.selectbox('Choose the number of accomodates:', list(range(1, 17))) # Selectbox (Accomodates)
             accomodates_button = st.form_submit_button(label='Choose No. of accomodates')
         
             if accomodates_button:
