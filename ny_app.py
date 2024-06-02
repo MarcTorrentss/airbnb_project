@@ -301,7 +301,7 @@ elif page == "Airbnb info":
             
                 select_people = df[df['accommodates'] == No_accomodates]
 
-                feq_price = No_accomodates.groupby(['neighbourhood_cleansed'])['price'].mean()
+                feq_price = select_people.groupby(['neighbourhood_cleansed'])['price'].mean()
                 feq_price = feq_price.sort_values(ascending=False)
                 feq_price = feq_price.to_frame().reset_index()
                 feq_price = feq_price.rename(columns = {"neighbourhood_cleansed":"neighbourhood", "price":"average_price"})
