@@ -179,7 +179,8 @@ elif page == "Airbnb info":
         st.write('Looking closer, now we represent the distribution of airbnbs accommodation in each neighbourhood.')
             
         accom_neigh = df['neighbourhood_cleansed'].value_counts().sort_values(ascending=True)
-            
+        accom_neigh = accom_neigh[accom_neigh > 500]
+        
         # Plotly bar chart
         fig = px.bar(accom_neigh, x=accom_neigh.values, y=accom_neigh.index, color=accom_neigh.values, color_continuous_scale='BrBG', text_auto = False) 
         fig.update_layout(
