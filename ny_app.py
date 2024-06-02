@@ -151,7 +151,7 @@ elif page == "Airbnb info":
 
     # ---------------------TABS (pestañas)----------------------#
     tab1, tab2, tab3, tab4, tab5 = st.tabs(
-        ['Accomodations', 'Room and Property', 'Price', 'Score', 'Maps'])
+        ['Accomodations', 'Room and Property', 'Prices', 'Scores', 'Maps'])
     
     with tab1:
 
@@ -284,32 +284,62 @@ elif page == "Airbnb info":
                 width=690, height=500, coloraxis_colorbar_title='No. of Airbnb offers')   
 
         st.plotly_chart(fig)
-
     
 
     with tab3:
                 
-        ## 5. Neighbourhood VS Average price
+        ## 7. Neighbourhood VS Average price
 
         st.markdown('### Neighbourhood VS Average price')
-        st.write('It would also be interesting to know the average price for each neighbourhood. As expected, staying in the historic centre is more expensive:')
-            
-        neigh_price = df.groupby('neighbourhood_cleansed')['price'].mean().sort_values(ascending=True)
-            
-        #Plotly bar chart
-        fig = px.bar(neigh_price,
-                        color=neigh_price.values,
-                        color_continuous_scale='tempo', 
-                        template='plotly_white',
-                        width=690, height=500)
+        st.write('It would also be interesting to know the average price for each neighbourhood')
 
-        fig.update_layout(title='Average price per accommodation and neighbourhood', title_x=0.23, coloraxis_colorbar_title='Average price', 
-        xaxis_title='Neighbourhoods',
-        yaxis_title='Average price per night')
-
-        st.plotly_chart(fig)
-
+        No_accomodates = st.selectbox('Choose the number of accomodates:', ['Choose...'] + [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]) # Selectbox (Accomodates)
+        accomodates_button = st.form_submit_button(label='Choose No. of accomodates')
         
+        if accomodates_button:
+            
+            select_people = df[df['accommodates'] == No_accomodates]
+
+            feq_price = No_accomodates.groupby(['neighbourhood_cleansed'])['price'].mean()
+            feq_price = feq_price.sort_values(ascending=False)
+            feq_price = feq_price.to_frame().reset_index()
+            feq_price = feq_price.rename(columns = {"neighbourhood_cleansed":"neighbourhood", "price":"average_price"})
+            adam = pd.merge(adam, feq_price, on='neighbourhood', how='left')
+            adam.rename(columns={'price': 'average_price'}, inplace=True)
+            adam.average_price = adam.average_price.round(decimals=0)
+            adam = adam.dropna()
+        
+            map_dict = adam.set_index('neighbourhood')['average_price'].to_dict()
+            color_scale = LinearColormap(['green','yellow','orange','red','brown'], vmin = min(map_dict.values()), vmax = max(map_dict.values()))
+
+            def get_color(feature):
+                value = map_dict.get(feature['properties']['neighbourhood'])
+                return color_scale(value)
+            
+            # Create the Folium map with the specified starting location
+            map2 = folium.Map(location = [latitud_1, longitud_1], zoom_start=10)
+            folium.GeoJson(data=adam, name='New york',
+               tooltip=folium.features.GeoJsonTooltip(fields=['neighbourhood', 'average_price'],
+                                                      labels=True,
+                                                      sticky=False),
+
+               style_function= lambda feature: {
+                   'fillColor': get_color(feature),
+                   'color': 'black',
+                   'weight': 1,
+                   'dashArray': '5, 5',
+                   'fillOpacity':0.5
+                   },
+               highlight_function=lambda feature: {'weight':3, 'fillColor': get_color(feature), 'fillOpacity': 0.8}).add_to(map2)      
+            
+            # Adding locations to the generated Folium map
+            FastMarkerCluster(data=coordinates).add_to(map2) # It is used to group the closest markers into clusters.
+            folium.Marker(location=[latitud_1,longitud_1]).add_to(map2)
+            folium_static(map2)
+
+            st.write('We see that the highest concentration of the highest average daily prices for Airbnb is in tourist zone, ``Manhattan`` and in the ``Brooklyn`` area that is close to the center.')
+        
+
 
 # PAGE 3-------------------------------------
 elif page == "Reviews":
