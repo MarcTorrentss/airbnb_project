@@ -99,7 +99,7 @@ if page == "Home":
     
     st.markdown("""
                 
-                The listings dataset has 39881 rows and 75 columns. In this case, we have created another record with 23 columns, which we are going to work on:
+                The listings dataset has 39881 rows and 75 columns. In this case, we have created another record with 25 columns, which we are going to work on:
 
                 1. ``host_since``: Date the host joined Airbnb.
                 2. ``host_location``: Location of the host.
@@ -108,21 +108,23 @@ if page == "Home":
                 5. ``Neighbourhood``: City zone.
                 6. ``neighbourhood_cleansed``: The neighbourhood as geocoded using the latitude and longitude against neighborhoods as defined by open or public digital shapefiles.
                 7. ``neighbourhood_group_cleansed``: The neighbourhood group as geocoded using the latitude and longitude against neighborhoods as defined by open or public digital shapefiles.
-                8. ``property_type``: Type of property.
-                9. ``room_type``: Type of room offered.
-                10. ``accommodates``: Maximum number of persons that can be accommodated in the property.
-                11. ``beds``: The number of bed(s).      
-                12. ``price``: Price per night from
-                13. ``minimum_nights``: Minimum number of night stay for the listing.
-                14. ``maximum_nights``: Maximum number of night stay for the listing.
-                15. ``availability_30``: Availability of the property in the next 30 days.
-                16. ``availability_60``: Availability of the property in the next 60 days.
-                17. ``availability_90``: Availability of the property in the next 90 days.
-                18. ``availability_365``: Availability of the property in the next year.
-                19.	``number_of_reviews``: Total number of reviews.
-                20.	``review_scores_rating``: Overall rating.
-                21. ``review_scores_location``: Location score.
-                22.	``reviews_per_month``: Average number of reviews received per month for a given property.
+                8. ``latitude``: Geographical coordinates (latitude) of the property.
+                9. ``longitude``: Geographical coordinates (longitude) of the property.
+                10. ``property_type``: Type of property.
+                11. ``room_type``: Type of room offered.
+                12. ``accommodates``: Maximum number of persons that can be accommodated in the property.
+                13. ``beds``: The number of bed(s).      
+                14. ``price``: Price per night from
+                15. ``minimum_nights``: Minimum number of night stay for the listing.
+                16. ``maximum_nights``: Maximum number of night stay for the listing.
+                17. ``availability_30``: Availability of the property in the next 30 days.
+                18. ``availability_60``: Availability of the property in the next 60 days.
+                19. ``availability_90``: Availability of the property in the next 90 days.
+                20. ``availability_365``: Availability of the property in the next year.
+                21.	``number_of_reviews``: Total number of reviews.
+                22.	``review_scores_rating``: Overall rating.
+                23. ``review_scores_location``: Location score.
+                24.	``reviews_per_month``: Average number of reviews received per month for a given property.
             
                 """  )      
     st.write('------')                    
@@ -154,10 +156,10 @@ elif page == "Airbnb info":
         """)
 
     # ---------------------TABS (pestañas)----------------------#
-    tab1, tab2, tab3, tab4 = st.tabs(
-        ['Accomodations','Price', 'Score','Maps']) 
-    with tab1:
-        st.markdown('Developing..')
+    # tab1, tab2, tab3, tab4 = st.tabs(
+    #    ['Accomodations','Price', 'Score','Maps']) 
+    # with tab1:
+    st.markdown('Developing..')
 
 
 
