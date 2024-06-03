@@ -381,7 +381,7 @@ elif page == "Airbnb info":
         adam2 = adam2.dropna()
         
         map_dict2 = adam2.set_index('neighbourhood')['average_price'].to_dict()
-        color_scale2 = LinearColormap(['green','yellow','orange','red','brown'], vmin = min(map_dict.values()), vmax = max(map_dict.values()))
+        color_scale2 = LinearColormap(['green','yellow','orange','red','brown'], vmin = min(map_dict2.values()), vmax = max(map_dict2.values()))
 
         def get_color(feature):
             value = map_dict2.get(feature['properties']['neighbourhood'])
