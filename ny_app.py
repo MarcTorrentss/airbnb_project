@@ -376,7 +376,7 @@ elif page == "Airbnb info":
         
         feq2 = df.groupby('neighbourhood_cleansed')['review_scores_location'].mean().sort_values(ascending=True)
         feq2 = feq2.to_frame().reset_index()
-        feq3 = feq2.rename(columns = {"neighbourhood_cleansed":"neighbourhood", "review_scores_location":"average_review"})
+        feq2 = feq2.rename(columns = {"neighbourhood_cleansed":"neighbourhood", "review_scores_location":"average_review"})
         adam2 = pd.merge(adam2, feq2, on='neighbourhood', how='left')
         adam2 = adam2.dropna()
         
