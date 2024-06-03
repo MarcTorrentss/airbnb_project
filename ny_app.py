@@ -380,7 +380,7 @@ elif page == "Airbnb info":
         adam2 = pd.merge(adam2, feq2, on='neighbourhood', how='left')
         adam2 = adam2.dropna()
         
-        map_dict2 = adam2.set_index('neighbourhood')['average_price'].to_dict()
+        map_dict2 = adam2.set_index('neighbourhood')['average_review'].to_dict()
         color_scale2 = LinearColormap(['green','yellow','orange','red','brown'], vmin = min(map_dict2.values()), vmax = max(map_dict2.values()))
 
         def get_color(feature):
@@ -390,7 +390,7 @@ elif page == "Airbnb info":
         # Create the Folium map with the specified starting location
         map3 = folium.Map(location = [latitud_1, longitud_1], zoom_start=10)
         folium.GeoJson(data=adam2, name='New york',
-            tooltip=folium.features.GeoJsonTooltip(fields=['neighbourhood', 'average_price'],
+            tooltip=folium.features.GeoJsonTooltip(fields=['neighbourhood', 'average_review'],
                                         labels=True,
                                         sticky=False),
 
