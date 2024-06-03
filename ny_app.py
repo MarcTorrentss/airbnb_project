@@ -381,27 +381,27 @@ elif page == "Airbnb info":
         map_dict2 = adam2.set_index('neighbourhood')['average_price'].to_dict()
         color_scale2 = LinearColormap(['green','yellow','orange','red','brown'], vmin = min(map_dict.values()), vmax = max(map_dict.values()))
 
-            def get_color(feature):
-                value = map_dict2.get(feature['properties']['neighbourhood'])
-                return color_scale2(value)
+        def get_color(feature):
+            value = map_dict2.get(feature['properties']['neighbourhood'])
+            return color_scale2(value)
             
-            # Create the Folium map with the specified starting location
-            map3 = folium.Map(location = [latitud_1, longitud_1], zoom_start=10)
-            folium.GeoJson(data=adam2, name='New york',
-                tooltip=folium.features.GeoJsonTooltip(fields=['neighbourhood', 'average_price'],
-                                            labels=True,
-                                            sticky=False),
+        # Create the Folium map with the specified starting location
+        map3 = folium.Map(location = [latitud_1, longitud_1], zoom_start=10)
+        folium.GeoJson(data=adam2, name='New york',
+            tooltip=folium.features.GeoJsonTooltip(fields=['neighbourhood', 'average_price'],
+                                        labels=True,
+                                        sticky=False),
 
-                style_function= lambda feature: {
-                    'fillColor': get_color(feature),
-                    'color': 'black',
-                    'weight': 1,
-                    'dashArray': '5, 5',
-                    'fillOpacity':0.5
-                    },
-                highlight_function=lambda feature: {'weight':3, 'fillColor': get_color(feature), 'fillOpacity': 0.8}).add_to(map3)      
+            style_function= lambda feature: {
+                'fillColor': get_color(feature),
+                'color': 'black',
+                'weight': 1,
+                'dashArray': '5, 5',
+                'fillOpacity':0.5
+                },
+            highlight_function=lambda feature: {'weight':3, 'fillColor': get_color(feature), 'fillOpacity': 0.8}).add_to(map3)      
             
-            folium_static(map3)
+        folium_static(map3)
 
 
 
