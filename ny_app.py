@@ -87,7 +87,7 @@ add_bg_from_local("images/ny_wallpaper_white.jpg")
 if page == "Home":
     
     st.markdown("""
-                ***RNew York, the city that never sleeps, has been a melting pot of cultures and religions for more than two centuries. Located in the state of New York, New York City is the largest city in the United States and a major global economic, cultural, and social hub. Today, it is a vibrant metropolis that combines the grandeur of its history with the vitality of a modern city, attracting millions of tourists every year.***
+                ***New York, the city that never sleeps, has been a melting pot of cultures and religions for more than two centuries. Located in the state of New York, New York City is the largest city in the United States and a major global economic, cultural, and social hub. Today, it is a vibrant metropolis that combines the grandeur of its history with the vitality of a modern city, attracting millions of tourists every year.***
                 """)
 
     st.markdown("""
