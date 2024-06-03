@@ -372,10 +372,12 @@ elif page == "Airbnb info":
         st.markdown('### Neighbourhood VS Scores')
         st.write('It would also be interesting to know the the neighborhoods with their respective airbnb average ratings')
 
+        adam2 = gpd.read_file("files/neighbourhoods.geojson")
+        
         feq2 = df.groupby('neighbourhood_cleansed')['review_scores_location'].mean().sort_values(ascending=True)
         feq2 = feq2.to_frame().reset_index()
         feq3 = feq2.rename(columns = {"neighbourhood_cleansed":"neighbourhood", "review_scores_location":"average_review"})
-        adam2 = pd.merge(adam, feq2, on='neighbourhood', how='left')
+        adam2 = pd.merge(adam2, feq2, on='neighbourhood', how='left')
         adam2 = adam2.dropna()
         
         map_dict2 = adam2.set_index('neighbourhood')['average_price'].to_dict()
