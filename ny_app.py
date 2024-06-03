@@ -154,7 +154,7 @@ elif page == "Airbnb info":
 
     # ---------------------TABS (pestañas)----------------------#
     tab1, tab2, tab3, tab4, tab5 = st.tabs(
-        ['Accomodations', 'Room and Property', 'Prices', 'Scores', 'Maps'])
+        ['Accomodations', 'Room and Property', 'Prices', 'Safety', 'Scores'])
     
     with tab1:
 
@@ -361,6 +361,47 @@ elif page == "Airbnb info":
         FastMarkerCluster(data=locations_s).add_to(map3) # It is used to group the closest markers into clusters.
         folium.Marker(location=[latitud_1,longitud_1]).add_to(map3)
         folium_static(map3)
+
+        st.write('If we talk about reports, the majority have been informed in the tourist zone.')
+    
+
+    with tab5:
+                
+        ## 9. Neighbourhood VS Scores
+
+        st.markdown('### Neighbourhood VS Scores')
+        st.write('It would also be interesting to know the the neighborhoods with their respective airbnb average ratings')
+
+        feq2 = df.groupby('neighbourhood_cleansed')['review_scores_location'].mean().sort_values(ascending=True)
+        feq2 = feq2.to_frame().reset_index()
+        feq3 = feq2.rename(columns = {"neighbourhood_cleansed":"neighbourhood", "review_scores_location":"average_review"})
+        adam2 = pd.merge(adam, feq2, on='neighbourhood', how='left')
+        adam2 = adam2.dropna()
+        
+        map_dict2 = adam2.set_index('neighbourhood')['average_price'].to_dict()
+        color_scale2 = LinearColormap(['green','yellow','orange','red','brown'], vmin = min(map_dict.values()), vmax = max(map_dict.values()))
+
+            def get_color(feature):
+                value = map_dict2.get(feature['properties']['neighbourhood'])
+                return color_scale2(value)
+            
+            # Create the Folium map with the specified starting location
+            map3 = folium.Map(location = [latitud_1, longitud_1], zoom_start=10)
+            folium.GeoJson(data=adam2, name='New york',
+                tooltip=folium.features.GeoJsonTooltip(fields=['neighbourhood', 'average_price'],
+                                            labels=True,
+                                            sticky=False),
+
+                style_function= lambda feature: {
+                    'fillColor': get_color(feature),
+                    'color': 'black',
+                    'weight': 1,
+                    'dashArray': '5, 5',
+                    'fillOpacity':0.5
+                    },
+                highlight_function=lambda feature: {'weight':3, 'fillColor': get_color(feature), 'fillOpacity': 0.8}).add_to(map3)      
+            
+            folium_static(map3)
 
 
 
