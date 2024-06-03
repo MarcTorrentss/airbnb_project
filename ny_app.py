@@ -340,7 +340,28 @@ elif page == "Airbnb info":
             
                 folium_static(map2)
                 st.write('We see that the highest concentration of the highest average daily prices for Airbnb is in tourist zone, ``Manhattan`` and in the ``Brooklyn`` area that is close to the center.')
-        
+
+
+    with tab4:
+                
+        ## 8. Neighbourhood VS Safety
+
+        st.markdown('### Neighbourhood VS Safety')
+        st.write('It would also be interesting to know the amount of felonies, misdemeanors, and violations reported to the New York City Police Department for each neighbourhood')
+            
+        safe = pd.read_csv("datasets/safety_limpio.csv")
+
+        # We create an interactive map of the crime count by neighborhood
+        lats_s = safe['Latitude'].tolist()
+        lons_s = safe['Longitude'].tolist()
+        locations_s = list(zip(lats_s, lons_s))
+        # Create the Folium map with the specified starting location
+        map3 = folium.Map(location = [latitud_1, longitud_1], zoom_start=10)
+        # Adding locations to the generated Folium map
+        FastMarkerCluster(data=locations_s).add_to(map3) # It is used to group the closest markers into clusters.
+        folium.Marker(location=[latitud_1,longitud_1]).add_to(map3)
+        folium_static(map3)
+
 
 
 # PAGE 3-------------------------------------
